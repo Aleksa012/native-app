@@ -6,10 +6,10 @@ export const authInstance = axios.create({
   baseURL: REACT_APP_URL,
 });
 
-const token = await AsyncStorage.getItem("authToken");
-
-authInstance.interceptors.request.use((config) => {
+authInstance.interceptors.request.use(async (config) => {
   if (!config.headers) return config;
-  config.headers["Authorization"] = `Bearer ${token ? token : ""}`;
+  config.headers["Authorization"] = `Bearer ${await AsyncStorage.getItem(
+    "authToken"
+  )}`;
   return config;
 });

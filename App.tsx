@@ -4,14 +4,11 @@ import { Platform, View } from 'react-native';
 import { rootStyles } from "./styles/main";
 import { NavigationContainer } from "@react-navigation/native"
 import { SafeAreaView } from "react-native-safe-area-context"
-import { SignUpLayout } from "./screens/Signup/Layout"
-import { SignIn } from "./screens/Signup/SignIn"
+import { SignUpRouter } from "./routes/SignUpRouter"
 
 const AppBody = () => {
   return <View style={rootStyles.wrapper}>
-  <SignUpLayout>
-    <SignIn/>
-  </SignUpLayout>
+    <SignUpRouter/>
 </View>
 
 }

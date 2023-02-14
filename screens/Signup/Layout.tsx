@@ -10,5 +10,7 @@ export const SignUpLayout = ({children}: PropsWithChildren) => {
 const styles = StyleSheet.create({
     container: {
         height: "100%",
+        justifyContent: "center",
+        backgroundColor: "#8BF5FA"
     }
 })
