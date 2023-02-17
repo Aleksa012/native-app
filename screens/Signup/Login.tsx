@@ -1,16 +1,17 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { View, Text, TextInput } from "react-native";
+import { View, Text } from "react-native";
 import { ParamsList } from "../../routes/SignUpRouter";
 import { SignUpLayout } from "./Layout";
 import { SignUpStyles } from "../../styles/SignUp/signUp";
 import { Button } from "../../components/Button";
-import { login, UserData } from "../../api/users/usersClient";
+import { getMe, login, UserData } from "../../api/users/usersClient";
 import { Formik } from "formik";
-import { setErrorMap, z } from "zod";
+import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { FormikInput } from "../../components/FormikInput";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { SessionContext } from "../../context/Session";
 
 const validationSchema = z.object({
   userName: z.string(),
@@ -28,17 +29,23 @@ export const Login = ({
   navigation,
 }: NativeStackScreenProps<ParamsList, "login">) => {
   const [error, setError] = useState<string | null>(null);
+
   const handleSubmit = async (values: UserData) => {
     try {
       const token = await login(values);
       await AsyncStorage.setItem("authToken", token);
+      const user = await getMe();
+      setSessionUser(user);
+      toggleLogginState();
     } catch (error) {
-      setError("user either doesnt exist or credentials arent right");
+      setError("User either doesnt exist or credentials arent right");
       setTimeout(() => {
         setError(null);
       }, 5000);
     }
   };
+
+  const { toggleLogginState, setSessionUser } = useContext(SessionContext);
 
   return (
     <SignUpLayout>

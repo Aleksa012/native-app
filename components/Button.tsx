@@ -1,7 +1,5 @@
-import { Pressable, PressableProps } from "react-native"
+import { TouchableOpacity, TouchableOpacityProps } from "react-native";
 
-export const Button = (props: PressableProps) => {
-    return <Pressable {...props}>
-        {props.children}
-    </Pressable>
-}
+export const Button = (props: TouchableOpacityProps) => {
+  return <TouchableOpacity {...props}>{props.children}</TouchableOpacity>;
+};

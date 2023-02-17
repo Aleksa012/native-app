@@ -4,6 +4,7 @@ export const SignUpStyles = StyleSheet.create({
   container: {
     height: "80%",
     alignItems: "center",
+    justifyContent: "center",
   },
   title: {
     fontSize: 46,

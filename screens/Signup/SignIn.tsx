@@ -14,8 +14,8 @@ const validationSchema = z
   .object({
     userName: z
       .string()
-      .min(5, "username must be minimum 5 chars long")
-      .max(10, "username can be no longer than 10 chars"),
+      .min(5, "Username must be minimum 5 chars long")
+      .max(10, "Username can be no longer than 10 chars"),
     email: z.string().email().optional(),
     password: z
       .string()

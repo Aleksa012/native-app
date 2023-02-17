@@ -10,8 +10,21 @@ export type UserData = {
   email?: string;
 };
 
+export type User = {
+  id: string;
+  userName: string;
+  email?: string;
+  isVerified: boolean;
+  posts: any[];
+};
+
 export const getAllUsers = async () => {
   const { data } = await authInstance.get(COMMON_PATH);
+  return data;
+};
+
+export const getMe = async (): Promise<User> => {
+  const { data } = await authInstance.get(COMMON_PATH + "/me");
   return data;
 };
 
