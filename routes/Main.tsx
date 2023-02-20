@@ -1,16 +1,43 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Home } from "../screens/main/Home";
+import { HomeRouter } from "../routes/Home";
+import { Profile } from "../screens/main/Profile";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
 export type ParamsList = {
-  home: undefined;
+  homeRouter: undefined;
+  profile: undefined;
 };
 
 const Tabs = createBottomTabNavigator<ParamsList>();
 
 export const MainRouter = () => {
   return (
-    <Tabs.Navigator initialRouteName="home">
-      <Tabs.Screen component={Home} name="home" />
+    <Tabs.Navigator
+      initialRouteName="homeRouter"
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveBackgroundColor: "#393053",
+        tabBarInactiveBackgroundColor: "#393053",
+      }}
+    >
+      <Tabs.Screen
+        component={HomeRouter}
+        name="homeRouter"
+        options={{
+          tabBarIcon: () => <AntDesign name="home" size={24} color="white" />,
+          title: "Home",
+        }}
+      />
+      <Tabs.Screen
+        component={Profile}
+        name="profile"
+        options={{
+          tabBarIcon: () => (
+            <AntDesign name="profile" size={24} color="white" />
+          ),
+          title: "Profile",
+        }}
+      />
     </Tabs.Navigator>
   );
 };
