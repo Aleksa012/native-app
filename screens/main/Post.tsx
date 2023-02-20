@@ -17,6 +17,7 @@ import {
 import { Button } from "../../components/Button";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Comment } from "../../components/Comment";
+import { postScreenStyles } from "../../styles/home/post";
 
 export const Post = (props: NativeStackScreenProps<ParamsList, "post">) => {
   const [post, setPost] = useState<PostProps>();
@@ -35,14 +36,14 @@ export const Post = (props: NativeStackScreenProps<ParamsList, "post">) => {
 
   if (!post)
     return (
-      <View style={{ ...styles.container, flex: 1 }}>
+      <View style={{ ...postScreenStyles.container, flex: 1 }}>
         <ActivityIndicator size="large" />
       </View>
     );
 
   return (
-    <View style={styles.container}>
-      <View style={styles.post}>
+    <View style={postScreenStyles.container}>
+      <View style={postScreenStyles.post}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <Text style={{ color: "white" }}>{`Author: ${post.author}`}</Text>
           <Text style={{ color: "white" }}>{`${post.createdAt.slice(
@@ -60,13 +61,13 @@ export const Post = (props: NativeStackScreenProps<ParamsList, "post">) => {
         ListEmptyComponent={
           <Text style={{ color: "white" }}>Empty, be first to comment :D</Text>
         }
-        contentContainerStyle={styles.list}
+        contentContainerStyle={postScreenStyles.list}
       />
-      <View style={styles.footer}>
+      <View style={postScreenStyles.footer}>
         <TextInput
           onChangeText={(text) => setComment(text)}
           placeholder="Comment..."
-          style={styles.field}
+          style={postScreenStyles.field}
           value={comment}
         />
         <Button
@@ -81,7 +82,7 @@ export const Post = (props: NativeStackScreenProps<ParamsList, "post">) => {
             });
             setComment("");
           }}
-          style={styles.btn}
+          style={postScreenStyles.btn}
         >
           <MaterialCommunityIcons name="send" size={24} color="white" />
         </Button>
@@ -89,51 +90,3 @@ export const Post = (props: NativeStackScreenProps<ParamsList, "post">) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    height: "100%",
-    backgroundColor: "#18122B",
-  },
-  post: {
-    backgroundColor: "#635985",
-    width: "100%",
-    minHeight: 100,
-    borderBottomWidth: 2,
-    borderBottomColor: "#205E61",
-    padding: 10,
-  },
-  footer: {
-    backgroundColor: "#393053",
-    position: "absolute",
-    height: 50,
-    width: "100%",
-    bottom: 0,
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexDirection: "row",
-    paddingHorizontal: 10,
-  },
-  field: {
-    width: "90%",
-    backgroundColor: "#635985",
-    height: 40,
-    fontSize: 24,
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    color: "white",
-  },
-  btn: {
-    width: 30,
-    height: 30,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  list: {
-    paddingHorizontal: 20,
-    paddingBottom: 50,
-    paddingTop: 10,
-    minHeight: "100%",
-  },
-});

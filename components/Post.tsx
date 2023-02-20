@@ -10,6 +10,7 @@ import { Button } from "./Button";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useContext, useState } from "react";
 import { SessionContext } from "../context/Session";
+import { postStyles } from "../styles/components/post";
 
 export const Post = ({
   id,
@@ -30,15 +31,15 @@ export const Post = ({
   });
 
   return (
-    <View style={styles.container}>
+    <View style={postStyles.container}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <Text style={styles.author}>{`Author: ${author}`}</Text>
+        <Text style={postStyles.author}>{`Author: ${author}`}</Text>
         <Text style={{ color: "white" }}>{`${createdAt.slice(
           0,
           createdAt.indexOf("T")
         )}`}</Text>
       </View>
-      <Text style={styles.content}>{`- ${content}${
+      <Text style={postStyles.content}>{`- ${content}${
         content[content.length - 1] === "." ? "" : "."
       }`}</Text>
       <View style={{ flexDirection: "row", marginTop: "auto" }}>
@@ -79,24 +80,3 @@ export const Post = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    minHeight: 100,
-    backgroundColor: "#635985",
-    marginBottom: 10,
-    borderWidth: 2,
-    borderColor: "#205E61",
-    borderRadius: 10,
-    padding: 10,
-  },
-  author: {
-    color: "white",
-    fontWeight: "bold",
-  },
-  content: {
-    color: "#8BF5FA",
-    fontSize: 16,
-  },
-});

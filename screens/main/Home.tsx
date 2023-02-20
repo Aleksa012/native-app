@@ -13,6 +13,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Post } from "../../components/Post";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SessionContext } from "../../context/Session";
+import { homeStyles } from "../../styles/home/home";
 
 export const Home = ({
   navigation,
@@ -29,8 +30,8 @@ export const Home = ({
   }, []);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
+    <View style={homeStyles.container}>
+      <View style={homeStyles.header}>
         <MaterialCommunityIcons name="logout" color="white" size={32} />
         <Button
           onPress={async () => {
@@ -47,13 +48,13 @@ export const Home = ({
         renderItem={({ item }) => <Post {...item} navigation={navigation} />}
         keyExtractor={({ id }) => id}
         ListEmptyComponent={<Text>Empty</Text>}
-        contentContainerStyle={styles.list}
+        contentContainerStyle={homeStyles.list}
       />
-      <View style={styles.footer}>
+      <View style={homeStyles.footer}>
         <TextInput
           onChangeText={(text) => setPostContent(text)}
           placeholder="Create post..."
-          style={styles.field}
+          style={homeStyles.field}
           value={postContent}
         />
         <Button
@@ -64,7 +65,7 @@ export const Home = ({
             const data = await getAllPosts();
             setPosts(data);
           }}
-          style={styles.btn}
+          style={homeStyles.btn}
         >
           <MaterialCommunityIcons name="send" size={24} color="white" />
         </Button>
@@ -72,51 +73,3 @@ export const Home = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#18122B",
-    height: "100%",
-    position: "relative",
-    flex: 1,
-  },
-  header: {
-    height: 50,
-    flexDirection: "row",
-    alignItems: "center",
-    paddingLeft: 20,
-  },
-  footer: {
-    backgroundColor: "#393053",
-    position: "absolute",
-    height: 50,
-    width: "100%",
-    bottom: 0,
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexDirection: "row",
-    paddingHorizontal: 10,
-  },
-  field: {
-    width: "90%",
-    backgroundColor: "#635985",
-    height: 40,
-    fontSize: 24,
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    color: "white",
-  },
-  btn: {
-    width: 30,
-    height: 30,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  list: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 50,
-    minHeight: "100%",
-  },
-});

@@ -1,6 +1,6 @@
 import { FormikProps, FormikValues } from "formik";
 import { View, Text, TextInput } from "react-native";
-import { SignUpStyles } from "../styles/SignUp/signUp";
+import { SignUpStyles } from "../styles/signUp/signUp";
 
 type FormikInputProps = Pick<FormikValues, "handleChange"> & {
   value: string;

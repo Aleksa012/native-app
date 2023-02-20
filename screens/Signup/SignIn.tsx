@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import { Button } from "../../components/Button";
 import { ParamsList } from "../../routes/SignUpRouter";
 import { SignUpLayout } from "./Layout";
-import { SignUpStyles } from "../../styles/SignUp/signUp";
+import { SignUpStyles } from "../../styles/signUp/signUp";
 import { Formik } from "formik";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";

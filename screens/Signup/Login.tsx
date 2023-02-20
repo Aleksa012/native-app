@@ -2,7 +2,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { View, Text } from "react-native";
 import { ParamsList } from "../../routes/SignUpRouter";
 import { SignUpLayout } from "./Layout";
-import { SignUpStyles } from "../../styles/SignUp/signUp";
+import { SignUpStyles } from "../../styles/signUp/signUp";
 import { Button } from "../../components/Button";
 import { getMe, login, UserData } from "../../api/users/usersClient";
 import { Formik } from "formik";
