@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { HomeRouter } from "../routes/Home";
 import { Profile } from "../screens/main/Profile";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { Platform, StatusBar } from "react-native";
 
 export type ParamsList = {
   homeRouter: undefined;

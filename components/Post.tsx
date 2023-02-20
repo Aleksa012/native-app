@@ -62,7 +62,12 @@ export const Post = ({
           {likes.filter((like) => like !== userId).length + (didLike ? 1 : 0)}
         </Text>
         <AntDesign
-          onPress={async () => await dislikePost(id)}
+          onPress={async () => {
+            setUserInteraction((prev) => {
+              return { ...prev, didDislike: !prev.didDislike };
+            });
+            await dislikePost(id);
+          }}
           name={didDislike ? "dislike1" : "dislike2"}
           size={20}
         />

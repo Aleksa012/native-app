@@ -33,6 +33,9 @@ export const postUser = async (userData: UserData) => {
 };
 
 export const login = async (userData: UserData): Promise<string> => {
-  const { data } = await baseInstance.post(COMMON_PATH + "/login", userData);
+  const { data } = await baseInstance.post(COMMON_PATH + "/login", {
+    ...userData,
+    email: userData.email === "" ? "example@mail.com" : userData.email,
+  });
   return data;
 };

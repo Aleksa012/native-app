@@ -7,16 +7,19 @@ import {
   getAllPosts,
   Post as PostType,
 } from "../../api/posts/postsClient";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "../../components/Button";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Post } from "../../components/Post";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { SessionContext } from "../../context/Session";
 
 export const Home = ({
   navigation,
 }: NativeStackScreenProps<ParamsList, "home">) => {
   const [posts, setPosts] = useState<PostType[]>();
   const [postContent, setPostContent] = useState("");
+  const { setSessionUser, toggleLogginState } = useContext(SessionContext);
 
   useEffect(() => {
     (async () => {
@@ -27,6 +30,18 @@ export const Home = ({
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <MaterialCommunityIcons name="logout" color="white" size={32} />
+        <Button
+          onPress={async () => {
+            await AsyncStorage.clear();
+            toggleLogginState();
+            setSessionUser(null);
+          }}
+        >
+          <Text style={{ color: "white", fontSize: 24 }}>Log out</Text>
+        </Button>
+      </View>
       <FlatList
         data={posts}
         renderItem={({ item }) => <Post {...item} navigation={navigation} />}
@@ -64,6 +79,12 @@ const styles = StyleSheet.create({
     height: "100%",
     position: "relative",
     flex: 1,
+  },
+  header: {
+    height: 50,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingLeft: 20,
   },
   footer: {
     backgroundColor: "#393053",

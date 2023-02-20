@@ -24,10 +24,7 @@ export default function App() {
     <SafeAreaProvider>
       <SessionProvider>
         <NavigationContainer>
-          <SafeAreaView
-            edges={Platform.OS === "ios" ? ["top"] : []}
-            style={rootStyles.container}
-          >
+          <SafeAreaView edges={["top"]} style={rootStyles.container}>
             <AppBody />
           </SafeAreaView>
           <StatusBar

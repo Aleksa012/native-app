@@ -79,7 +79,7 @@ export const Login = ({
                 <Text style={SignUpStyles.btnText}>LOGIN</Text>
               </Button>
               <Button onPress={() => navigation.navigate("sign_in")}>
-                <Text style={SignUpStyles.link}>Sign In</Text>
+                <Text style={SignUpStyles.link}>Sign Up</Text>
               </Button>
               {error && <Text style={SignUpStyles.error}>{error}</Text>}
             </View>

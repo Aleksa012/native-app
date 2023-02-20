@@ -16,7 +16,7 @@ const validationSchema = z
       .string()
       .min(5, "Username must be minimum 5 chars long")
       .max(10, "Username can be no longer than 10 chars"),
-    email: z.string().email().optional(),
+    email: z.string().email(),
     password: z
       .string()
       .regex(
@@ -57,7 +57,7 @@ export const SignIn = ({
         >
           {({ values, handleChange, handleSubmit, errors, touched }) => (
             <View style={SignUpStyles.form}>
-              <Text style={SignUpStyles.title}>Sign In</Text>
+              <Text style={SignUpStyles.title}>Sign Up</Text>
               <FormikInput
                 handleChange={handleChange}
                 value={values.userName}
@@ -93,7 +93,7 @@ export const SignIn = ({
                 type="password"
               />
               <Button onPress={() => handleSubmit()} style={SignUpStyles.btn}>
-                <Text style={SignUpStyles.btnText}>SIGN IN</Text>
+                <Text style={SignUpStyles.btnText}>SIGN UP</Text>
               </Button>
               <Text>Already got an account?</Text>
               <Button onPress={() => navigation.navigate("login")}>
